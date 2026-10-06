@@ -4,7 +4,10 @@ import * as schema from "./schema";
 
 const dbUrl =
   process.env.DATABASE_URL ||
-  "postgresql://bakery_user:bakery_secret_pass_123@127.0.0.1:5432/sugarbliss";
+  process.env.POSTGRES_URL ||
+  process.env.POSTGRES_PRISMA_URL ||
+  process.env.POSTGRES_URL_NON_POOLING ||
+  "postgresql://bakery_user:***@127.0.0.1:5432/sugarbliss";
 
 declare global {
   var _pgClient: postgres.Sql | undefined;
